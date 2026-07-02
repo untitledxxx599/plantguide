@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>파 식물도감</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1c261f;
+  --muted: #5b665f;
+  --line: #dfe7de;
+  --leaf: #2d6a4f;
+  --leaf-dark: #1b4332;
+  --sun: #f2b84b;
+  --cream: #fbfaf2;
+  --paper: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+a { color: inherit; }
+
+.site-header {
+  background: var(--leaf-dark);
+  color: white;
+  padding: 28px min(6vw, 56px);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0;
+}
+
+.site-header h4 {
+  margin: 8px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #edf8f0;
+}
+
+.site-header p {
+  margin: 8px 0 0;
+  color: #dceee3;
+}
+
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #e7eee6;
+}
+
+.card strong { font-size: 20px; }
+.card span { color: var(--muted); }
+
+.plant-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.plant-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #e7eee6;
+}
+
+.info {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.info th,
+.info td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.info th {
+  width: 150px;
+  color: var(--leaf-dark);
+  background: #edf5ee;
+}
+
+.info tr:last-child th,
+.info tr:last-child td {
+  border-bottom: 0;
+}
+
+.growth h2 {
+  margin: 18px 0 10px;
+  font-size: 22px;
+  color: var(--leaf-dark);
+}
+
+.literary {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.literary-header {
+  width: min(920px, 100%);
+  margin: 0 auto 8px;
+  text-align: center;
+}
+
+.literary-title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+  color: var(--leaf-dark);
+}
+
+.literary-author {
+  width: min(680px, 100%);
+  margin: 6px auto 0;
+  padding-right: 4px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.poem-body {
+  width: min(680px, 100%);
+  margin: 0 auto 22px;
+  padding: 10px 0 0;
+}
+
+.poem-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.scroll-panel {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.scroll-panel h3 {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 17px;
+  color: var(--leaf-dark);
+  background: #edf5ee;
+  border-bottom: 1px solid var(--line);
+}
+
+.scroll-body {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.scroll-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: var(--leaf);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button.secondary {
+  background: var(--sun);
+  color: #2d2612;
+}
+
+@media (max-width: 760px) {
+  .plant-layout { grid-template-columns: 1fr; }
+
+  .info th,
+  .info td {
+    display: block;
+    width: 100%;
+  }
+
+  .info th { padding-bottom: 6px; }
+  .info td { padding-top: 6px; }
+
+  .literary-title { font-size: 32px; }
+  .literary-author,
+  .poem-body { width: 100%; }
+}
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>파</h1>
+    <p>Green Onion</p>
+  </header>
+  <main class="plant-layout">
+    <img class="plant-photo" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNjA0MjNfNTcg%2FMDAxNzc2OTU1NDYwMDg0.eg6jd74AbS4OYssP0ME4-R_DuPr77Dsz-T47mRqlboYg.bt3TFkX8-t7nc7AnCOMhWG30s4hKsoaIgqFWlVx4dRkg.PNG%2Fimage.png&type=sc960_832" alt="파 사진">
+    <section>
+      <table class="info" aria-label="파 식물 정보">
+        <tr><th>학명</th><td><em>Allium fistulosum</em></td></tr>
+        <tr><th>계</th><td>식물계(Plantae)</td></tr>
+        <tr><th>분류군</th><td>속씨식물문 · 외떡잎식물강 · 비짜루목 · 수선화과</td></tr>
+        <tr><th>주 분포지역</th><td>동아시아 지역에서 널리 재배, 한국·중국·일본의 주요 향신 채소</td></tr>
+        <tr><th>사용 용도 예시</th><td>국·찌개 향미 재료, 양념, 고명, 볶음 요리</td></tr>
+      </table>
+      <section class="growth">
+        <h2>생육 정보</h2>
+        <table class="info" aria-label="파 생육 정보">
+          <tr><th>햇빛</th><td>양지</td></tr>
+          <tr><th>물 주기</th><td>흙이 마르면 충분히</td></tr>
+          <tr><th>적정 온도</th><td>15~25℃</td></tr>
+          <tr><th>수확 시기</th><td>파종 후 약 50~70일</td></tr>
+        </table>
+      </section>
+      <div class="actions">
+        <a class="button" href="../index.html">도감 목록</a>
+      </div>
+    </section>
+      <section class="literary" aria-label="파 시와 해설">
+        <div class="literary-header">
+          <h2 class="literary-title">파밭가에서</h2>
+          <p class="literary-author">김수영</p>
+        </div>
+        <div class="poem-body">
+          <pre>삶은 계란의 껍질이
+벗겨지듯
+묵은 사랑이
+벗겨질 때
+붉은 파밭의 푸른 새싹을 보아라
+얻는다는 것은 곧 잃는 것이다
+
+먼지 앉은 석경 너머로
+너의 그림자가
+움직이듯
+묵은 사랑이
+움직일 때
+붉은 파밭의 푸른 새싹을 보아라
+얻는다는 것은 곧 잃는 것이다
+
+새벽에 준 조로의 물이
+대낮이 지나도록 마르지 않고
+젖어 있듯이
+묵은 사랑이
+뉘우치는 마음의 한복판에
+젖어 있을 때
+붉은 파밭의 푸른 새싹을 보아라
+얻는다는 것은 곧 잃는 것이다</pre>
+        </div>
+        <article class="scroll-panel">
+          <h3>해설</h3>
+          <div class="scroll-body">
+            <pre>이 시는 묵은 사랑이라는 과거의 것을 버리고 새로운 것을 얻자는 화자의 생각이 주제이다.
+화자는 얻는다는 것은 잃는 것이라고 말하며
+묵은 사랑을 버릴것을 강조한다.
+묵은 사랑은 시간이 지나면서 변질되거나 시대와 맞지 않게 된 가치로 해석할 수 있다.
+그렇게 묵은 사랑을 버릴때 화자는 푸른 새싹을 보라고 얘기하는데
+푸른 새싹은 아직 파가 되지않은 묵은 사랑을 버리고 얻어야 할 새로운 사랑으로 볼 수 있다.
+2연도 마찬가지로 묵은 사랑을 버리고 새로운 사랑을 얻자는 의미를 담고있다.
+3연은 물이 흙에 스며들어 흙을 젖게 만들듯
+흙 속에 스며든 묵은 사랑을 버리자는 뜻이며
+화자는 묵은 사랑을 버리지 못한것에 대해 뉘우친다.
+
+시의 제목이 파밭가에서인 점과 붉은 파밭의 새싹을 긍정한다는 점에서
+파는 화자가 묵은 사랑을 버린 뒤 추구하게될 대상인데
+왜 하필 파를 상징으로 사용했나 생각해봤다.
+개인적인 해석으로 쪽파는 종구를 심어서 키우는데
+잎만 자를 경우 남은 종구에서 쪽파가 새로 자라나기에 여러번 수확 할 수 있다
+그러나 한 종구에서 오랫동안 쪽파를 수확하다 보면 바이러스가 누적되고 잎이 가늘어질 수 있다
+그래서 나는 오래된 종구가 새로 심은 종구에 비해 품질이 떨어진다는 점과 오래된 종구를 파내야 새 종구를 심을 자리가 생긴다는 점에서
+파라는 상징을 시에서 사용한게 아닐까하고 추측했다
+그런데 파가 쪽파라고 명시된것도 아니고 결국 왜 파라는 시어를 썼는지는 시인 본인만 알기에
+그냥 개인적인 해석 정도로 볼 수 있을거 같다</pre>
+          </div>
+        </article>
+      </section>
+
+  </main>
+</body>
+</html>

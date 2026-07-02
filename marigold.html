@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>메리골드 식물도감</title>
+  <style>
+:root {
+  color-scheme: light;
+  --ink: #1c261f;
+  --muted: #5b665f;
+  --line: #dfe7de;
+  --leaf: #2d6a4f;
+  --leaf-dark: #1b4332;
+  --sun: #f2b84b;
+  --cream: #fbfaf2;
+  --paper: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+a { color: inherit; }
+
+.site-header {
+  background: var(--leaf-dark);
+  color: white;
+  padding: 28px min(6vw, 56px);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0;
+}
+
+.site-header h4 {
+  margin: 8px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #edf8f0;
+}
+
+.site-header p {
+  margin: 8px 0 0;
+  color: #dceee3;
+}
+
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #e7eee6;
+}
+
+.card strong { font-size: 20px; }
+.card span { color: var(--muted); }
+
+.plant-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.plant-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #e7eee6;
+}
+
+.info {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.info th,
+.info td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.info th {
+  width: 150px;
+  color: var(--leaf-dark);
+  background: #edf5ee;
+}
+
+.info tr:last-child th,
+.info tr:last-child td {
+  border-bottom: 0;
+}
+
+.growth h2 {
+  margin: 18px 0 10px;
+  font-size: 22px;
+  color: var(--leaf-dark);
+}
+
+.literary {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.literary-header {
+  width: min(920px, 100%);
+  margin: 0 auto 8px;
+  text-align: center;
+}
+
+.literary-title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+  color: var(--leaf-dark);
+}
+
+.literary-author {
+  width: min(680px, 100%);
+  margin: 6px auto 0;
+  padding-right: 4px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.poem-body {
+  width: min(680px, 100%);
+  margin: 0 auto 22px;
+  padding: 10px 0 0;
+}
+
+.poem-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.scroll-panel {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.scroll-panel h3 {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 17px;
+  color: var(--leaf-dark);
+  background: #edf5ee;
+  border-bottom: 1px solid var(--line);
+}
+
+.scroll-body {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.scroll-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: var(--leaf);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button.secondary {
+  background: var(--sun);
+  color: #2d2612;
+}
+
+@media (max-width: 760px) {
+  .plant-layout { grid-template-columns: 1fr; }
+
+  .info th,
+  .info td {
+    display: block;
+    width: 100%;
+  }
+
+  .info th { padding-bottom: 6px; }
+  .info td { padding-top: 6px; }
+
+  .literary-title { font-size: 32px; }
+  .literary-author,
+  .poem-body { width: 100%; }
+}
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>메리골드</h1>
+    <p>Marigold</p>
+  </header>
+  <main class="plant-layout">
+    <img class="plant-photo" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTEyMDhfMjk3%2FMDAxNzY1MTkzMzYzMjQ0.D2DT_nNycXDXr4MkMv50ru5Mc0606SlVfE454CqLBWAg.KgE35VnCJ5b725zUShlUnBMDjJjwp8Od65YlLsHil-gg.PNG%2F%25B8%25DE%25B8%25AE%25B0%25F1%25B5%25E5_%25B2%25C9%25B8%25BB1.png&type=sc960_832" alt="메리골드 사진">
+    <section>
+      <table class="info" aria-label="메리골드 식물 정보">
+        <tr><th>학명</th><td><em>Tagetes erecta</em></td></tr>
+        <tr><th>계</th><td>식물계(Plantae)</td></tr>
+        <tr><th>분류군</th><td>속씨식물문 · 쌍떡잎식물강 · 국화목 · 국화과</td></tr>
+        <tr><th>주 분포지역</th><td>멕시코와 중앙아메리카 원산, 관상용으로 전 세계 재배</td></tr>
+        <tr><th>사용 용도 예시</th><td>관상용 화초, 천연 색소, 동반 식물, 화단 장식</td></tr>
+      </table>
+      <section class="growth">
+        <h2>생육 정보</h2>
+        <table class="info" aria-label="메리골드 생육 정보">
+          <tr><th>햇빛</th><td>양지</td></tr>
+          <tr><th>물 주기</th><td>흙이 마르면 충분히</td></tr>
+          <tr><th>적정 온도</th><td>18~28℃</td></tr>
+          <tr><th>개화시기</th><td>심은지 약 50~70일 후</td></tr>
+        </table>
+      </section>
+      <div class="actions">
+        <a class="button" href="../index.html">도감 목록</a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
